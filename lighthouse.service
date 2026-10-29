@@ -1,0 +1,12 @@
+[Unit]
+Description=Lighthouse Consensus Client
+After=network.target geth.service
+
+[Service]
+User=adm-mesifi
+Type=simple
+ExecStart=/home/adm-mesifi/.cargo/bin/lighthouse beacon_node --datadir /data/ethereum/consensus --network mainnet --execution-endpoint http://localhost:8551 --execution-jwt /data/ethereum/jwt.hex --checkpoint-sync-url https://mainnet.checkpoint.sigp.io
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
