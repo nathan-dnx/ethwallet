@@ -1,0 +1,13 @@
+[Unit]
+Description=Geth Execution Client
+After=network.target
+
+[Service]
+User=adm-mesifi
+Type=simple
+ExecStart=/data/go-ethereum/build/bin/geth --datadir /data/ethereum/execution --mainnet --http --http.addr 0.0.0.0 --http.api eth,web3 --ws --ws.addr 0.0.0.0 --ws.api eth,web3 --authrpc.jwtsecret /data/ethereum/jwt.hex
+Restart=on-failure
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
